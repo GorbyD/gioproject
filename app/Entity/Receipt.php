@@ -39,7 +39,6 @@ class Receipt
     public function setFileName(string $file_name): Receipt
     {
         $this->file_name = $file_name;
-
         return $this;
     }
 
@@ -51,7 +50,6 @@ class Receipt
     public function setCreatedAt(\DateTime $createdAt): Receipt
     {
         $this->createdAt = $createdAt;
-
         return $this;
     }
 
@@ -63,9 +61,7 @@ class Receipt
     public function setTransaction(Transaction $transaction): Receipt
     {
         $transaction->addReceipt($this);
-
         $this->transaction = $transaction;
-
         return $this;
     }
 }

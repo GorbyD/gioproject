@@ -21,7 +21,6 @@ class StartSessionsMiddleware implements MiddlewareInterface
         if (headers_sent($fileName, $line)) {
             throw new SessionException('Headers already sent');
         }
-
         session_start();
 
         $response = $handler->handle($request);

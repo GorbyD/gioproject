@@ -17,7 +17,7 @@
                                 </h2>
                                 <form method="post" action="/register">
                                     <div class="form-outline form-white mb-4">
-                                        <input type="text" name="name" required
+                                        <input type="text" name="name"
                                                value="{{ old.name }}"
                                                class="form-control form-control-lg {{ errors.name ? 'is-invalid' : '' }}"
                                                placeholder="Name" />
@@ -26,7 +26,7 @@
                                         </div>
                                     </div>
                                     <div class="form-outline form-white mb-4">
-                                        <input type="email" name="email" required
+                                        <input type="email" name="email"
                                                value="{{ old.email }}"
                                                class="form-control form-control-lg {{ errors.email ? 'is-invalid' : '' }}"
                                                placeholder="Email" />
@@ -35,7 +35,7 @@
                                         </div>
                                     </div>
                                     <div class="form-outline form-white mb-4">
-                                        <input type="password" name="password" required
+                                        <input type="password" name="password"
                                                class="form-control form-control-lg {{ errors.password ? 'is-invalid' : '' }}"
                                                placeholder="Password" />
                                         <div class="invalid-feedback">
@@ -43,7 +43,7 @@
                                         </div>
                                     </div>
                                     <div class="form-outline form-white mb-5">
-                                        <input type="password" name="confirmPassword" required
+                                        <input type="password" name="confirmPassword"
                                                class="form-control form-control-lg {{ errors.confirmPassword ? 'is-invalid' : '' }}"
                                                placeholder="Confirm Password" />
                                         <div class="invalid-feedback">
