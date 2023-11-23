@@ -7,4 +7,5 @@ $router = require CONFIG_PATH . '/routes/web.php';
 
 $router($app);
 
+/** @var \Slim\App $app  */
 $app->run();
