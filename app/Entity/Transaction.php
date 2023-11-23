@@ -75,7 +75,6 @@ class Transaction
     public function setDate(\DateTime $date): Transaction
     {
         $this->date = $date;
-
         return $this;
     }
 
@@ -87,7 +86,6 @@ class Transaction
     public function setAmount(float $amount): Transaction
     {
         $this->amount = $amount;
-
         return $this;
     }
 
@@ -99,7 +97,6 @@ class Transaction
     public function setCreatedAt(\DateTime $createdAt): Transaction
     {
         $this->createdAt = $createdAt;
-
         return $this;
     }
 
@@ -111,7 +108,6 @@ class Transaction
     public function setUpdatedAt(\DateTime $updatedAt): Transaction
     {
         $this->updatedAt = $updatedAt;
-
         return $this;
     }
 
@@ -123,9 +119,7 @@ class Transaction
     public function setUser(User $user): Transaction
     {
         $user->addTransaction($this);
-
         $this->user = $user;
-
         return $this;
     }
 
@@ -137,9 +131,7 @@ class Transaction
     public function setCategory(Category $category): Transaction
     {
         $category->addTransaction($this);
-
         $this->category = $category;
-
         return $this;
     }
 
@@ -151,7 +143,6 @@ class Transaction
     public function addReceipt(Receipt $receipt): Transaction
     {
         $this->receipts->add($receipt);
-
         return $this;
     }
 }
