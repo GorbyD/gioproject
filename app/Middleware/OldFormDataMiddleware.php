@@ -20,9 +20,7 @@ class OldFormDataMiddleware implements MiddlewareInterface
     {
         if (! empty($_SESSION['old'])) {
             $old = $_SESSION['old'];
-
             $this->twig->getEnvironment()->addGlobal('old', $old);
-
             unset($_SESSION['old']);
         }
 
