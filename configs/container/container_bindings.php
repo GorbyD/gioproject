@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 use App\Auth;
 use App\Config;
-use App\Contracts\AuthInferface;
+use App\Contracts\AuthInterface;
 use App\Contracts\UserProviderServiceInterface;
 use App\Enum\AppEnvironment;
 use App\Services\UserProviderService;
@@ -61,14 +61,16 @@ return [
     /**
      * The following two bindings are needed for EntryFilesTwigExtension & AssetExtension to work for Twig
      */
-    'webpack_encore.packages'     => fn() => new Packages(
+    'webpack_encore.packages'           => fn() => new Packages(
         new Package(new JsonManifestVersionStrategy(BUILD_PATH . '/manifest.json'))
     ),
-    'webpack_encore.tag_renderer' => fn(ContainerInterface $container) => new TagRenderer(
+    'webpack_encore.tag_renderer'       => fn(ContainerInterface $container) => new TagRenderer(
         new EntrypointLookup(BUILD_PATH . '/entrypoints.json'),
         $container->get('webpack_encore.packages')
     ),
-    ResponseFactoryInterface::class => fn(App $app) => $app->getResponseFactory(),
-    AuthInferface::class => fn(ContainerInterface $container) => $container->get(Auth::class),
-    UserProviderServiceInterface::class => fn(ContainerInterface $container) => $container->get(UserProviderService::class),
+    ResponseFactoryInterface::class     => fn(App $app) => $app->getResponseFactory(),
+    AuthInterface::class                => fn(ContainerInterface $container) => $container->get(Auth::class),
+    UserProviderServiceInterface::class => fn(ContainerInterface $container) => $container->get(
+        UserProviderService::class
+    ),
 ];

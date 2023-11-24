@@ -1,10 +1,10 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Controllers;
 
-use App\Contracts\AuthInferface;
+use App\Contracts\AuthInterface;
 use App\Entity\User;
 use App\Exception\ValidationException;
 use Doctrine\ORM\EntityManager;
@@ -18,7 +18,7 @@ class AuthController
     public function __construct(
         private readonly Twig $twig,
         private readonly EntityManager $entityManager,
-        private readonly AuthInferface $auth
+        private readonly AuthInterface $auth
     ) {
     }
 
@@ -42,13 +42,13 @@ class AuthController
         $v->rule('email', 'email');
         $v->rule('equals', 'confirmPassword', 'password')->label('Confirm Password');
         $v->rule(
-            fn($field, $value, $params, $fields) => !$this->entityManager->getRepository(User::class)->count(
+            fn($field, $value, $params, $fields) => ! $this->entityManager->getRepository(User::class)->count(
                 ['email' => $value]
             ),
             'email'
         )->message('User with the given email address already exists');
 
-        if (!$v->validate()) {
+        if (! $v->validate()) {
             throw new ValidationException($v->errors());
         }
 
@@ -73,9 +73,10 @@ class AuthController
         $v->rule('required', ['email', 'password']);
         $v->rule('email', 'email');
 
-        if (!$this->auth->attemptLogin($data)) {
+        if(! $this->auth->attemptLogin($data)) {
             throw new ValidationException(['password' => ['You have entered an invalid username or password']]);
         }
+
         return $response->withHeader('Location', '/')->withStatus(302);
     }
 

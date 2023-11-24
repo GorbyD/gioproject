@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\Services;
 
 use App\Contracts\UserInterface;
@@ -9,7 +11,6 @@ use Doctrine\ORM\EntityManager;
 
 class UserProviderService implements UserProviderServiceInterface
 {
-
     public function __construct(private readonly EntityManager $entityManager)
     {
     }

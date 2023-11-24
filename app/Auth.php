@@ -1,14 +1,14 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App;
 
-use App\Contracts\AuthInferface;
+use App\Contracts\AuthInterface;
 use App\Contracts\UserInterface;
 use App\Contracts\UserProviderServiceInterface;
-use App\Entity\User;
-use Doctrine\ORM\EntityManager;
 
-class Auth implements AuthInferface
+class Auth implements AuthInterface
 {
     private ?UserInterface $user = null;
 
@@ -24,15 +24,16 @@ class Auth implements AuthInferface
 
         $userId = $_SESSION['user'] ?? null;
 
-        if (!$userId) {
+        if (! $userId) {
             return null;
         }
 
         $user = $this->userProvider->getById($userId);
 
-        if (!$user) {
+        if (! $user) {
             return null;
         }
+
         $this->user = $user;
 
         return $this->user;
@@ -49,19 +50,21 @@ class Auth implements AuthInferface
         session_regenerate_id();
 
         $_SESSION['user'] = $user->getId();
+
         $this->user = $user;
+
         return true;
     }
 
-    public function checkCredentials(UserInterface $user, array $credentials) : bool
+    public function checkCredentials(UserInterface $user, array $credentials): bool
     {
         return password_verify($credentials['password'], $user->getPassword());
     }
 
     public function logOut(): void
     {
-        dd('logout');
         unset($_SESSION['user']);
+
         $this->user = null;
     }
 }
