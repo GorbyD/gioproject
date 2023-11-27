@@ -17,6 +17,7 @@ const ajax = (url, method = 'get', data = {}) => {
         url += '?' + (new URLSearchParams(data)).toString();
     }
 
+    //TODO Если при post все успешно и ответа пустой - тут ошибка в консоли
     return fetch(url, options).then(response => response.json())
 }
 
