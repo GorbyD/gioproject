@@ -40,6 +40,9 @@ class Category
         $this->transactions = new ArrayCollection();
     }
 
+    /**
+     * @return int
+     */
     public function getId(): int
     {
         return $this->id;
@@ -53,7 +56,6 @@ class Category
     public function setName(string $name): Category
     {
         $this->name = $name;
-
         return $this;
     }
 
@@ -65,7 +67,6 @@ class Category
     public function setCreatedAt(\DateTime $createdAt): Category
     {
         $this->createdAt = $createdAt;
-
         return $this;
     }
 
@@ -77,7 +78,6 @@ class Category
     public function setUpdatedAt(\DateTime $updatedAt): Category
     {
         $this->updatedAt = $updatedAt;
-
         return $this;
     }
 
@@ -89,9 +89,7 @@ class Category
     public function setUser(User $user): Category
     {
         $user->addCategory($this);
-
         $this->user = $user;
-
         return $this;
     }
 
@@ -103,7 +101,6 @@ class Category
     public function addTransaction(Transaction $transaction): Category
     {
         $this->transactions->add($transaction);
-
         return $this;
     }
 }
