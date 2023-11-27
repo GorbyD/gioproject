@@ -24,6 +24,9 @@ class Session implements SessionInterface
             throw new SessionException('Headers have already sent by ' . $fileName . ':' . $line);
         }
 
+        //Если поставить secure => true, то в моей ситуации в данный момент все ломается, т.к. не может установиться кука
+        //с передаваемым session_id. Изза этого сессия пустая и не удается залогиниться. А началось с того, что я экспериментировал с удалением кук в инспекторе браузера
+        //Но у него подключается также без https и не ломается, хз почему
         session_set_cookie_params(
             [
                 'secure'   => $this->options->secure,
@@ -32,11 +35,11 @@ class Session implements SessionInterface
             ]
         );
 
-        if (! empty($this->options->name)) {
+        if (!empty($this->options->name)) {
             session_name($this->options->name);
         }
 
-        if (! session_start()) {
+        if (!session_start()) {
             throw new SessionException('Unable to start the session');
         }
     }
@@ -84,9 +87,7 @@ class Session implements SessionInterface
     public function getFlash(string $key): array
     {
         $messages = $_SESSION[$this->options->flashName][$key] ?? [];
-
         unset($_SESSION[$this->options->flashName][$key]);
-
         return $messages;
     }
 }
