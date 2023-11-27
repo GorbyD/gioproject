@@ -48,7 +48,7 @@ class User implements UserInterface
 
     public function __construct()
     {
-        $this->categories   = new ArrayCollection();
+        $this->categories = new ArrayCollection();
         $this->transactions = new ArrayCollection();
     }
 
@@ -58,12 +58,11 @@ class User implements UserInterface
     }
 
     #[PrePersist, PreUpdate]
-    public function updateTimestamps(LifecycleEventArgs $args): void
+    public function updateTimestamps(LifecycleEventArgs $args)
     {
-        if (! isset($this->createdAt)) {
+        if (!isset($this->createdAt)) {
             $this->createdAt = new \DateTime();
         }
-
         $this->updatedAt = new \DateTime();
     }
 
@@ -87,7 +86,6 @@ class User implements UserInterface
     public function setEmail(string $email): User
     {
         $this->email = $email;
-
         return $this;
     }
 
@@ -99,7 +97,6 @@ class User implements UserInterface
     public function setPassword(string $password): User
     {
         $this->password = $password;
-
         return $this;
     }
 
@@ -121,7 +118,6 @@ class User implements UserInterface
     public function addCategory(Category $category): User
     {
         $this->categories->add($category);
-
         return $this;
     }
 
@@ -133,7 +129,6 @@ class User implements UserInterface
     public function addTransaction(Transaction $transaction): User
     {
         $this->transactions->add($transaction);
-
         return $this;
     }
 }

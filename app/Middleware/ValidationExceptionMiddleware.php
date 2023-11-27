@@ -28,8 +28,8 @@ class ValidationExceptionMiddleware implements MiddlewareInterface
             return $handler->handle($request);
         } catch (ValidationException $e) {
             $response = $this->responseFactory->createResponse();
-            $referer  = $this->requestService->getReferer($request);
-            $oldData  = $request->getParsedBody();
+            $referer = $this->requestService->getReferer($request);
+            $oldData = $request->getParsedBody();
 
             $sensitiveFields = ['password', 'confirmPassword'];
 
