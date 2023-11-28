@@ -81,6 +81,7 @@ class CategoriesController
 
     public function load(Request $request, Response $response): Response
     {
+        //TODO тут используется один фильтр. А что если надо больше? Как строить сложные запросы?
         $params      = $this->requestService->getDataTableQueryParameters($request);
         $categories  = $this->categoryService->getPaginatedCategories($params);
         $transformer = function (Category $category) {
@@ -94,7 +95,7 @@ class CategoriesController
 
         $totalCategories = count($categories);
 
-        return $this->responseFormatter->asDataTable(
+        return $this->responseFormatter->asJson(
             $response,
             array_map($transformer, (array) $categories->getIterator()),
             $params->draw,
