@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 use App\Enum\AppEnvironment;
 
-$appEnv       = $_ENV['APP_ENV'] ?? AppEnvironment::Production->value;
+$appEnv = $_ENV['APP_ENV'] ?? AppEnvironment::Production->value;
 $appSnakeName = strtolower(str_replace(' ', '_', $_ENV['APP_NAME']));
 
 return [
@@ -27,11 +27,12 @@ return [
             'password' => $_ENV['DB_PASS'],
         ],
     ],
-    'session'               => [
-        'name'       => $appSnakeName . '_session',
+    'session' => [
+        'name' => $appSnakeName . '_session',
         'flash_name' => $appSnakeName . '_flash',
-        'secure'     => true,
-        'httponly'   => true,
-        'samesite'   => 'lax',
+        'secure' => false, //см. коммент в \App\Session::start()
+        'httponly' => true,
+        'samesite' => 'lax',
     ],
+
 ];

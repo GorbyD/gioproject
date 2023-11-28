@@ -52,7 +52,7 @@ class AuthController
             $request->getParsedBody()
         );
 
-        if (! $this->auth->attemptLogin($data)) {
+        if (!$this->auth->attemptLogin($data)) {
             throw new ValidationException(['password' => ['You have entered an invalid username or password']]);
         }
 
