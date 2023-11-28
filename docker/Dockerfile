@@ -53,5 +53,7 @@ USER $USER
 #&& docker rm $(docker ps -a -q) \
 #&& docker rmi $(docker images -a -q)
 
+#cd /home/gorby/projects/gioproject/docker && sudo docker-compose down && sudo docker-compose up -d --build && sudo chmod -R 777 /home/gorby/projects/gioproject
+
 #docker exec -it expennies-app /bin/bash
 
