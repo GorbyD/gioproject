@@ -1,5 +1,5 @@
-import { Modal }     from "bootstrap"
-import { get, post } from "./ajax"
+import {Modal} from "bootstrap"
+import {get, post, del} from "./ajax"
 
 window.addEventListener('DOMContentLoaded', function () {
     const editCategoryModal = new Modal(document.getElementById('editCategoryModal'))
@@ -8,7 +8,8 @@ window.addEventListener('DOMContentLoaded', function () {
         button.addEventListener('click', function (event) {
             const categoryId = event.currentTarget.getAttribute('data-id')
 
-            get(`/categories/${ categoryId }`)
+            get(`/categories/${categoryId}`)
+                .then(response => response.json())
                 .then(response => openEditCategoryModal(editCategoryModal, response))
         })
     })
@@ -16,10 +17,23 @@ window.addEventListener('DOMContentLoaded', function () {
     document.querySelector('.save-category-btn').addEventListener('click', function (event) {
         const categoryId = event.currentTarget.getAttribute('data-id')
 
-        post(`/categories/${ categoryId }`, {
+        post(`/categories/${categoryId}`, {
             name: editCategoryModal._element.querySelector('input[name="name"]').value
-        }).then(response => {
-            console.log(response)
+        }, editCategoryModal._element).then(response => {
+            if (response.ok) {
+                editCategoryModal.hide()
+            }
+        })
+    })
+
+    document.querySelectorAll('.delete-category-btn').forEach(button => {
+        button.addEventListener('click', function (event) {
+            const categoryId = event.currentTarget.getAttribute('data-id')
+
+            if (confirm('Are you sure you want to delete this category?')) {
+                del(`/categories/${categoryId}`)
+            }
+
         })
     })
 })
