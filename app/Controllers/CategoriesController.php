@@ -49,6 +49,7 @@ class CategoriesController
 
     public function get(Request $request, Response $response, array $args): Response
     {
+        //TODO Сейчас этот метод для ajax запроса. А как сделать, чтобы этот же метод рендерил на отдельной странице карточку. Видимо также через requestService->isXhr() ?
         $category = $this->categoryService->getById((int) $args['id']);
 
         if (! $category) {
