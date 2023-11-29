@@ -38,7 +38,7 @@ class ReceiptController
         }
 
         $randomFilename = bin2hex(random_bytes(25));
-
+        //TODO После получения уникального имени - файлы почему то сохраняются с 0 размером
         $this->filesystem->write('receipts/' . $randomFilename, $file->getStream()->getContents());
 
         $this->receiptService->create($transaction, $filename, $randomFilename);
