@@ -20,6 +20,7 @@ use Doctrine\DBAL\DriverManager;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\ORMSetup;
 use League\Flysystem\Filesystem;
+use League\Flysystem\Local\LocalFilesystemAdapter;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Slim\App;
@@ -99,7 +100,7 @@ return [
         new SessionConfig(
             $config->get('session.name', ''),
             $config->get('session.flash_name', 'flash'),
-            $config->get('session.secure', true),
+            $config->get('session.secure', true), //см. коммент в \App\Session::stat()
             $config->get('session.httponly', true),
             SameSite::from($config->get('session.samesite', 'lax'))
         )
