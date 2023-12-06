@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Middleware;
 
@@ -24,7 +24,6 @@ class ValidationErrorsMiddleware implements MiddlewareInterface
         if ($errors = $this->session->getFlash('errors')) {
             $this->twig->getEnvironment()->addGlobal('errors', $errors);
         }
-
         return $handler->handle($request);
     }
 }
