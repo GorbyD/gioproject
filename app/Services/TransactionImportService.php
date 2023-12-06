@@ -40,6 +40,7 @@ class TransactionImportService
                 $this->transactionService->create($transactionData, $user)
             );
 
+            //TODO есть ли тут какие то правки?
             if ($count % $batchSize === 0) {
                 $this->entityManagerService->sync();
                 $this->entityManagerService->clear(Transaction::class);
