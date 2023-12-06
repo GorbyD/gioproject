@@ -87,6 +87,7 @@ class CategoryController
 
     public function load(Request $request, Response $response): Response
     {
+        //TODO тут используется один фильтр. А что если надо больше? Как строить сложные запросы?
         $params      = $this->requestService->getDataTableQueryParameters($request);
         $categories  = $this->categoryService->getPaginatedCategories($params);
         $transformer = function (Category $category) {
