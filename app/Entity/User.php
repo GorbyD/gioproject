@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Entity;
 
@@ -43,7 +43,7 @@ class User implements UserInterface
 
     public function __construct()
     {
-        $this->categories   = new ArrayCollection();
+        $this->categories = new ArrayCollection();
         $this->transactions = new ArrayCollection();
     }
 
@@ -72,7 +72,6 @@ class User implements UserInterface
     public function setEmail(string $email): User
     {
         $this->email = $email;
-
         return $this;
     }
 
@@ -84,7 +83,6 @@ class User implements UserInterface
     public function setPassword(string $password): User
     {
         $this->password = $password;
-
         return $this;
     }
 
@@ -96,7 +94,6 @@ class User implements UserInterface
     public function addCategory(Category $category): User
     {
         $this->categories->add($category);
-
         return $this;
     }
 
@@ -108,7 +105,6 @@ class User implements UserInterface
     public function addTransaction(Transaction $transaction): User
     {
         $this->transactions->add($transaction);
-
         return $this;
     }
 
