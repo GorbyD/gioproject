@@ -55,5 +55,5 @@ USER $USER
 
 #cd /home/gorby/projects/gioproject/docker && sudo docker-compose down && sudo docker-compose up -d --build && sudo chmod -R 777 /home/gorby/projects/gioproject
 
-#docker exec -it expennies-app /bin/bash
+#docker exec -it -u root expennies-app /bin/bash
 
