@@ -22,7 +22,7 @@ interface SessionInterface
 
     public function has(string $key): bool;
 
-    public function flash(string $key, array $messages): void;
+    public function flash(string $key, array $messages) : void;
 
-    public function getFlash(string $key): array;
+    public function getFlash(string $key) : array;
 }
