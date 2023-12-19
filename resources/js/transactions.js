@@ -196,6 +196,7 @@ window.addEventListener('DOMContentLoaded', function () {
         }
 
         post(`/transactions/${ transactionId }/receipts`, formData, uploadReceiptModal._element)
+            // .then(response => response.json())
             .then(response => {
                 if (response.ok) {
                     table.draw()
