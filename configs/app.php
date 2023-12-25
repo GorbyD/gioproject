@@ -33,9 +33,9 @@ return [
     'session'               => [
         'name'       => $appSnakeName . '_session',
         'flash_name' => $appSnakeName . '_flash',
-        'secure'     => true,
-        'httponly'   => true,
-        'samesite'   => 'lax',
+        'secure' => false, //см. коммент в \App\Session::start()
+        'httponly' => true,
+        'samesite' => 'lax',
     ],
     'storage'               => [
         'driver' => StorageDriver::Local,
