@@ -19,13 +19,12 @@ RUN apt-get update && apt-get install -y \
 #    && apt-get install nodejs -y
 
 #По официальной инструкции установка npm не предлагается, на нативной системе все поставилось нормально, проблема почему то именно в докере
-#И не по неизвестным причинам несмотря на то что я указал 16 версию - ставится 18
+#И не по неизвестным причинам несмотря на то что я указываю 16 версию - ставится 18
 #Скорее всего node надо будет поднимать в отдельном сервисе docker
-RUN apt-get install -y ca-certificates curl gnupg \
-    && mkdir -p /etc/apt/keyrings \
+RUN apt-get update && apt-get install -y ca-certificates curl gnupg \
     && curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg \
-    && echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_16.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list \
-    && apt-get update && apt-get install -y nodejs npm
+    && echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_18.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list \
+    && apt-get update && apt-get install nodejs -y
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
