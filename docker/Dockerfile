@@ -46,6 +46,8 @@ RUN groupadd --force -g $GROUP_ID $USER
 RUN useradd -ms /bin/bash --no-user-group -g $GROUP_ID -u 1337 $USER
 RUN usermod -u $USER_ID $USER
 
+RUN apt-get install -y iputils-ping iproute2
+
 USER $USER
 
 
